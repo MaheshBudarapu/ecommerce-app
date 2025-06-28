@@ -1,25 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function ProductsPage() {
   const products = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '$10',
-      image: 'https://vpia.placeholder.com/150'
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: '$15',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: '$20',
-      image: 'https://via.placeholder.com/150'
-    }
+    { id: 1, name: 'Product 1', price: '$10', image: 'https://via.placeholder.com/150' },
+    { id: 2, name: 'Product 2', price: '$15', image: 'https://via.placeholder.com/150' },
+    { id: 3, name: 'Product 3', price: '$20', image: 'https://via.placeholder.com/150' }
   ];
 
   return (
@@ -29,7 +15,11 @@ function ProductsPage() {
         {products.map(product => (
           <div key={product.id} style={styles.card}>
             <img src={product.image} alt={product.name} style={styles.image} />
-            <h3>{product.name}</h3>
+            <h3>
+              <Link to={`/products/${product.id}`} style={styles.link}>
+                {product.name}
+              </Link>
+            </h3>
             <p>{product.price}</p>
           </div>
         ))}
@@ -57,6 +47,10 @@ const styles = {
   image: {
     width: '100%',
     height: 'auto'
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#333'
   }
 };
 
